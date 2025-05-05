@@ -1,3 +1,4 @@
+ASSIGNMENT 1
 class Book:
     def __init__(self, title, author, pages, price):
         # Initializing attributes for the book
@@ -63,3 +64,26 @@ print(special_edition_book.display_certificate())
 # Setting a new price for the regular book
 regular_book.set_price(18.99)
 print(f"Updated Price for Regular Book: ${regular_book.get_price()}")
+
+ASSIGNMENT 2
+class Vehicle:
+    def move(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+class Car(Vehicle):
+    def move(self):
+        # Specific implementation for Car's move action
+        print("Driving 🚗")
+
+class Plane(Vehicle):
+    def move(self):
+        # Specific implementation for Plane's move action
+        print("Flying ✈️")
+
+# Creating instances of Car and Plane
+car = Car()
+plane = Plane()
+
+# Calling the move() method on both objects
+car.move()   # Output: Driving 🚗
+plane.move()  # Output: Flying ✈️
