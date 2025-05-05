@@ -1,0 +1,65 @@
+class Book:
+    def __init__(self, title, author, pages, price):
+        # Initializing attributes for the book
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.__price = price  # Encapsulation: making price private
+
+    # Getter for price
+    def get_price(self):
+        return self.__price
+
+    # Setter for price
+    def set_price(self, new_price):
+        if new_price >= 0:
+            self.__price = new_price
+        else:
+            print("Price must be a non-negative value.")
+
+    def display_info(self):
+        # Display basic information about the book
+        return f"Book Info:\nTitle: {self.title}\nAuthor: {self.author}\nPages: {self.pages}\nPrice: ${self.__price}"
+
+    def read_book(self):
+        # Simulating reading the book
+        return f"Reading '{self.title}' by {self.author}..."
+
+class SpecialEditionBook(Book):
+    def __init__(self, title, author, pages, price, edition_number, certificate_code):
+        # Initializing both base class and subclass attributes
+        super().__init__(title, author, pages, price)
+        self.edition_number = edition_number
+        self.certificate_code = certificate_code
+
+    def display_info(self):
+        # Overriding display_info to include special edition details
+        basic_info = super().display_info()
+        return f"{basic_info}\nEdition Number: {self.edition_number}\nCertificate Code: {self.certificate_code}"
+
+    def display_certificate(self):
+        # New method for special edition book
+        return f"Certificate of Authenticity: Edition #{self.edition_number}, Code: {self.certificate_code}"
+
+    def read_book(self):
+        # Overriding read_book method for the special edition book
+        return f"Reading the limited edition '{self.title}' by {self.author}. Edition #{self.edition_number}."
+
+# Creating instances of both classes
+regular_book = Book("The Great Gatsby", "F. Scott Fitzgerald", 180, 15.99)
+special_edition_book = SpecialEditionBook("The Great Gatsby", "F. Scott Fitzgerald", 180, 35.99, 1, "A12345")
+
+# Displaying information about both books
+print(regular_book.display_info())
+print(special_edition_book.display_info())
+
+# Reading the books
+print(regular_book.read_book())
+print(special_edition_book.read_book())
+
+# Displaying certificate for the special edition book
+print(special_edition_book.display_certificate())
+
+# Setting a new price for the regular book
+regular_book.set_price(18.99)
+print(f"Updated Price for Regular Book: ${regular_book.get_price()}")
